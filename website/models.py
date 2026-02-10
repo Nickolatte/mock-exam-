@@ -22,6 +22,8 @@ class User(db.Model, UserMixin):
 
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    
+    booking_date = db.Column(db.Date, nullable=False)
+    adults = db.Column(db.Integer, nullable=False, default=0)
+    children = db.Column(db.Integer, nullable=False, default=0)
+    created_at = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
